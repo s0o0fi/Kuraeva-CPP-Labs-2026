@@ -10,7 +10,7 @@ namespace{
     const int midNight = 0;
 
     const int maxHour = 23;
-    const int minValue = 0; //можно ли сделать переменную минимум часов и минут если их значение равно?
+    const int minValue = 0;
     const int maxMinut = 59;
 
     const int findLastOne = 10;
