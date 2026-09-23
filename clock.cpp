@@ -1,90 +1,90 @@
 #include <iostream>
 
 namespace {
-const int startMorning{5};
-const int startDay = 12;
-const int startEvening = 18;
-const int startNight = 23;
+const int kStartMorning{5};
+const int kStartDay{12};
+const int kStartEvening{18};
+const int kStartNight{23};
 
-const int midDay = 12;
-const int midNight = 0;
+const int kMidDay{12};
+const int kMidNight{0};
 
-const int hightLimitHour = 23;
-const int lowLimitValue = 0;
-const int hightLimitMinut = 59;
+const int kHigtLimitHour{23};
+const int kLowLimitValue{0};
+const int kHightLimitMinut{59};
 
-const int findLastOne = 10;
+const int kFindLastOne{10};
 
-const int exceptionsStart = 11;
-const int exceptionsEnd = 14;
+const int kExceptionsStart{11};
+const int kExceptionsEnd{14};
 
-const int endingForSingle = 1;
-const int endingForFew = 2;
-const int endingForMany = 4;
+const int kEndingForSingle{1};
+const int kEndingForFew{2};
+const int kEndingForMany{4};
 }  // namespace
 
 int main() {
-    int hours;
-    int minutes;
+    int hours{0};
+    int minutes{0};
     std::cout << "Введите часы и минуты: ";
     std::cin >> hours >> minutes;
 
-    if (hours < lowLimitValue || hours > hightLimitHour || minutes < lowLimitValue || minutes > hightLimitMinut) {
+    if (hours < kLowLimitValue || hours > kHigtLimitHour || minutes < kLowLimitValue || minutes > kHightLimitMinut) {
         std::cout << "введены недопустимые данные" << std::endl;
         return 1;
     }
 
-    if (hours == midNight && minutes == lowLimitValue) {
+    if (hours == kMidNight && minutes == kLowLimitValue) {
         std::cout << "полночь" << std::endl;
         return 0;
     }
-    if (hours == midDay && minutes == lowLimitValue) {
+    if (hours == kMidDay && minutes == kLowLimitValue) {
         std::cout << "полдень" << std::endl;
         return 0;
     }
 
-    int coutHours = hours % midDay;
-    if (coutHours == midNight) {
-        coutHours = midDay;
+    int coutHours = hours % kMidDay;
+    if (coutHours == kMidNight) {
+        coutHours = kMidDay;
     }
 
     std::cout << coutHours;
 
-    if (coutHours == endingForSingle) {
+    if (coutHours == kEndingForSingle) {
         std::cout << " час";
-    } else if (coutHours >= endingForFew && coutHours <= endingForMany) {
+    } else if (coutHours >= kEndingForFew && coutHours <= kEndingForMany) {
         std::cout << " часа";
     } else {
         std::cout << " часов";
     }
 
-    if (minutes != lowLimitValue) {
+    if (minutes != kLowLimitValue) {
         std::cout << " " << minutes;
 
-        int lastOneMinutes = minutes % findLastOne;
+        int lastOneMinutes = minutes % kFindLastOne;
 
-        if (minutes >= exceptionsStart && minutes <= exceptionsEnd) {
+        if (minutes >= kExceptionsStart && minutes <= kExceptionsEnd) {
             std::cout << " минут";
-        } else if (lastOneMinutes == endingForSingle) {
+        } else if (lastOneMinutes == kEndingForSingle) {
             std::cout << " минута";
-        } else if (lastOneMinutes >= endingForFew && lastOneMinutes <= endingForMany) {
+        } else if (lastOneMinutes >= kEndingForFew && lastOneMinutes <= kEndingForMany) {
             std::cout << " минуты";
         } else {
             std::cout << " минут";
         }
     }
 
-    if (hours >= startMorning && hours < startDay) {
+    if (hours >= kStartMorning && hours < kStartDay) {
         std::cout << " утра";
-    } else if (hours >= startDay && hours < startEvening) {
+    } else if (hours >= kStartDay && hours < kStartEvening) {
         std::cout << " дня";
-    } else if (hours >= startEvening && hours <= startNight) {
+    } else if (hours >= kStartEvening && hours <= kStartNight) {
         std::cout << " вечера";
     } else {
         std::cout << " ночи";
     }
 
-    if (minutes == lowLimitValue) {
+    if (minutes == kLowLimitValue) {
         std::cout << " ровно";
     }
 
