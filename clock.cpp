@@ -10,11 +10,10 @@ namespace{
     const int midNight = 0;
 
     const int maxHour = 23;
-    const int minValue = 0; //можно ли сделать переменную минимум часов и минут если их значение равно?
+    const int minValue = 0;
     const int maxMinut = 59;
 
     const int findLastOne = 10;
-    const int findLastTwo = 100;
 
     const int exceptionsStart = 11;
     const int exceptionsEnd = 14;
@@ -70,10 +69,9 @@ int main(){
     if (minutes != minValue){
         std::cout << " " << minutes;
 
-        int lastTwoMinutes = minutes % findLastTwo;
         int lastOneMinutes = minutes % findLastOne;
 
-        if (lastTwoMinutes >= exceptionsStart && lastTwoMinutes <= exceptionsEnd) {
+        if (minutes >= exceptionsStart && minutes <= exceptionsEnd) {
             std::cout << " минут";
         } else if (lastOneMinutes == endsWithOne) {
             std::cout << " минута";
