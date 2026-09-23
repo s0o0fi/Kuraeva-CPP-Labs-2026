@@ -4,14 +4,14 @@ namespace {
 const int kStartMorning{5};
 const int kStartDay{12};
 const int kStartEvening{18};
-const int kStartNight{23};
+const int kEndEvening{23};
 
-const int kMidDay{12};
-const int kMidNight{0};
+const int kMidday{12};
+const int kMidnight{0};
 
-const int kHigtLimitHour{23};
+const int kHighLimitHour{23};
 const int kLowLimitValue{0};
-const int kHightLimitMinut{59};
+const int kHighLimitMinute{59};
 
 const int kFindLastOne{10};
 
@@ -29,23 +29,23 @@ int main() {
     std::cout << "Введите часы и минуты: ";
     std::cin >> hours >> minutes;
 
-    if (hours < kLowLimitValue || hours > kHigtLimitHour || minutes < kLowLimitValue || minutes > kHightLimitMinut) {
+    if (hours < kLowLimitValue || hours > kHighLimitHour || minutes < kLowLimitValue || minutes > kHighLimitMinute) {
         std::cout << "введены недопустимые данные" << std::endl;
         return 1;
     }
 
-    if (hours == kMidNight && minutes == kLowLimitValue) {
+    if (hours == kMidnight && minutes == kLowLimitValue) {
         std::cout << "полночь" << std::endl;
         return 0;
     }
-    if (hours == kMidDay && minutes == kLowLimitValue) {
+    if (hours == kMidday && minutes == kLowLimitValue) {
         std::cout << "полдень" << std::endl;
         return 0;
     }
 
-    int coutHours = hours % kMidDay;
-    if (coutHours == kMidNight) {
-        coutHours = kMidDay;
+    int coutHours = hours % kMidday;
+    if (coutHours == kMidnight) {
+        coutHours = kMidday;
     }
 
     std::cout << coutHours;
@@ -54,7 +54,7 @@ int main() {
         std::cout << " час";
     } else if (coutHours >= kEndingForFew && coutHours <= kEndingForMany) {
         std::cout << " часа";
-    } else {
+    } else if (coutHours >= kStartMorning && coutHours <= kMidday) {
         std::cout << " часов";
     }
 
@@ -63,13 +63,12 @@ int main() {
 
         int lastOneMinutes = minutes % kFindLastOne;
 
-        if (minutes >= kExceptionsStart && minutes <= kExceptionsEnd) {
-            std::cout << " минут";
-        } else if (lastOneMinutes == kEndingForSingle) {
+        if (lastOneMinutes == kEndingForSingle && minutes != kExceptionsStart) {
             std::cout << " минута";
-        } else if (lastOneMinutes >= kEndingForFew && lastOneMinutes <= kEndingForMany) {
+        } else if (lastOneMinutes >= kEndingForFew && lastOneMinutes <= kEndingForMany && (minutes < kExceptionsStart || minutes > kExceptionsEnd)) {
             std::cout << " минуты";
-        } else {
+        } else if (lastOneMinutes == kLowLimitValue || lastOneMinutes >= kStartMorning ||
+                   (minutes >= kExceptionsStart && minutes <= kExceptionsEnd)) {
             std::cout << " минут";
         }
     }
@@ -78,9 +77,9 @@ int main() {
         std::cout << " утра";
     } else if (hours >= kStartDay && hours < kStartEvening) {
         std::cout << " дня";
-    } else if (hours >= kStartEvening && hours <= kStartNight) {
+    } else if (hours >= kStartEvening && hours <= kEndEvening) {
         std::cout << " вечера";
-    } else {
+    } else if (hours >= kMidnight && hours < kStartMorning) {
         std::cout << " ночи";
     }
 
