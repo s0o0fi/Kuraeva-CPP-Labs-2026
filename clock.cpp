@@ -43,7 +43,12 @@ int main() {
         return 0;
     }
 
-    int coutHours = hours % kMidday;
+    int coutHours {hours};
+
+    if (hours > kMidday) {
+        coutHours = hours - kMidday;
+    }
+
     if (coutHours == kMidnight) {
         coutHours = kMidday;
     }
